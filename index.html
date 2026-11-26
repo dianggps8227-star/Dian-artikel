@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f6fa">
+  <meta name="description" content="Ruang Artikel — tempat membuat dan membaca artikel interaktif.">
+  <title>Ruang Artikel — Baca, Tulis, Bagikan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#beranda" id="brandHome" aria-label="Ruang Artikel, beranda">
+      <span class="brand-mark">R<span>.</span></span>
+      <span class="brand-name">ruang<span>artikel</span></span>
+    </a>
+
+    <nav class="main-nav" aria-label="Navigasi utama">
+      <button class="nav-link active" id="homeNav" type="button">Jelajahi</button>
+      <button class="nav-link" id="adminNav" type="button">Kelola Artikel</button>
+    </nav>
+
+    <div class="top-actions">
+      <button class="icon-btn" id="accountBtn" type="button" title="Akun">👤</button>
+      <span class="account-label" id="accountLabel">Belum login</span>
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Ubah tema" title="Ubah tema">
+        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+      </button>
+      <button class="primary-btn top-write" id="newArticleTop" type="button"><span>＋</span> Tulis Artikel</button>
+      <button class="mobile-menu" id="mobileMenu" type="button" aria-label="Buka menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="view" id="homeView">
+      <section class="hero wrap">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> TEMPAT IDE BERTUMBUH</div>
+          <h1>Cerita punya tempat.<br><span>Ide punya ruang.</span></h1>
+          <p>Temukan bacaan menarik, bagikan pengetahuan, dan ubah ide sederhana menjadi cerita yang berarti.</p>
+          <div class="hero-actions">
+            <button class="primary-btn" id="heroWrite" type="button">Mulai Menulis <span>↗</span></button>
+            <span class="reader-note"><span class="reader-avatars"><i>R</i><i>A</i><i>D</i></span> Ruang untuk semua cerita</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-orbit orbit-one"></div>
+          <div class="art-orbit orbit-two"></div>
+          <div class="art-paper paper-back"><span></span><span></span><span></span></div>
+          <div class="art-paper paper-front">
+            <div class="paper-top"><span class="paper-dot"></span><span class="paper-dot"></span><span class="paper-dot"></span></div>
+            <div class="paper-label">YOUR NEXT STORY</div>
+            <div class="paper-heading">Tulis sesuatu<br><em>yang berarti.</em></div>
+            <div class="paper-lines"><span></span><span></span><span></span></div>
+            <div class="paper-sign">R.</div>
+          </div>
+          <div class="floating-note note-one">✦ Ide baru</div>
+          <div class="floating-note note-two">01 / 26</div>
+        </div>
+      </section>
+
+      <section class="content-section wrap">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow muted-eyebrow">PILIHAN UNTUKMU</div>
+            <h2>Jelajahi tulisan</h2>
+            <p class="section-subtitle">Bacaan segar dari berbagai topik.</p>
+          </div>
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg>
+            <input id="searchInput" type="search" placeholder="Cari artikel..." autocomplete="off" aria-label="Cari artikel">
+            <kbd>⌕</kbd>
+          </div>
+        </div>
+
+        <div class="browse-layout">
+          <div class="feed-area">
+            <div class="filter-row" id="categoryFilters" aria-label="Filter kategori"></div>
+            <div class="feed-meta">
+              <span id="resultCount">Memuat artikel...</span>
+              <label class="sort-control">Urutkan
+                <select id="sortSelect" aria-label="Urutkan artikel">
+                  <option value="latest">Terbaru</option>
+                  <option value="popular">Terpopuler</option>
+                  <option value="oldest">Terlama</option>
+                </select>
+              </label>
+            </div>
+            <div class="article-grid" id="articleGrid"></div>
+            <div class="pagination" id="pagination"></div>
+            <button class="secondary-btn" id="bookmarksToggle" type="button">☆ Artikel tersimpan</button>
+          </div>
+
+          <aside class="sidebar">
+            <div class="side-card about-card">
+              <div class="side-icon">✳</div>
+              <h3>Tentang Ruang Artikel</h3>
+              <p>Tempat sederhana untuk menyimpan gagasan, berbagi pengalaman, dan membaca sudut pandang baru.</p>
+              <button class="text-btn" id="aboutWrite" type="button">Bagikan ceritamu <span>→</span></button>
+            </div>
+            <div class="side-card popular-card">
+              <div class="side-card-heading"><h3>Sering dibaca</h3><span>↗</span></div>
+              <div id="popularList" class="popular-list"></div>
+            </div>
+            <div class="side-quote">
+              <span class="quote-mark">“</span>
+              <p>Menulis adalah cara untuk membuat pikiran menemukan bentuknya.</p>
+              <span class="quote-credit">CATATAN HARI INI</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </section>
+
+    <section class="view hidden wrap admin-view" id="adminView">
+      <div class="admin-heading">
+        <div>
+          <div class="eyebrow muted-eyebrow">RUANG KREATOR</div>
+          <h1>Kelola tulisanmu<span>.</span></h1>
+          <p>Atur draf, terbitkan artikel, dan lihat perkembangan tulisanmu.</p>
+        </div>
+        <button class="primary-btn" id="newArticleAdmin" type="button">＋ Artikel Baru</button>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card"><span class="stat-icon purple">▤</span><div><span class="stat-label">Total artikel</span><strong id="statTotal">0</strong></div></div>
+        <div class="stat-card"><span class="stat-icon green">↗</span><div><span class="stat-label">Sudah terbit</span><strong id="statPublished">0</strong></div></div>
+        <div class="stat-card"><span class="stat-icon orange">◷</span><div><span class="stat-label">Masih draf</span><strong id="statDraft">0</strong></div></div>
+        <div class="stat-card"><span class="stat-icon blue">♡</span><div><span class="stat-label">Total suka</span><strong id="statLikes">0</strong></div></div>
+        <div class="stat-card"><span class="stat-icon violet">◉</span><div><span class="stat-label">Total pembaca</span><strong id="statReads">0</strong></div></div>
+      </div>
+      <section class="admin-highlight" id="adminHighlight"><span class="highlight-icon">★</span><div><span class="panel-kicker">ARTIKEL TERPOPULER</span><strong id="topArticleTitle">Belum ada artikel</strong><small id="topArticleInfo">Artikel yang paling banyak dibaca akan tampil di sini.</small></div></section>
+
+      <section class="editor-panel" id="editorPanel">
+        <div class="panel-heading">
+          <div><span class="panel-kicker">EDITOR</span><h2 id="editorHeading">Buat artikel baru</h2></div>
+          <button class="icon-btn close-editor" id="closeEditor" type="button" aria-label="Tutup editor">✕</button>
+        </div>
+        <form id="articleForm">
+          <div class="form-grid">
+            <label class="field field-wide">Judul artikel
+              <input id="articleTitle" maxlength="120" placeholder="Contoh: Hal-hal kecil yang mengubah harimu" required>
+            </label>
+            <label class="field">Kategori
+              <select id="articleCategory">
+                <option>Umum</option><option>Teknologi</option><option>Pendidikan</option><option>Sejarah</option><option>Gaya Hidup</option><option>Opini</option><option>Hiburan</option>
+              </select>
+            </label>
+            <label class="field">URL gambar sampul <span class="optional">(opsional)</span>
+              <input id="articleCover" type="url" placeholder="https://contoh.com/gambar.jpg">
+              <input id="coverUpload" type="file" accept="image/*" aria-label="Upload gambar sampul dari perangkat">
+              <span class="cover-hint">Pilih gambar dari HP atau gunakan URL. Ukuran gambar sebaiknya maksimal 2 MB.</span>
+              <div id="coverPreview" class="cover-preview hidden"><img id="coverPreviewImg" alt="Preview cover artikel"><button type="button" id="removeCover" class="small-action">Hapus cover</button></div>
+            </label>
+            <label class="field field-wide">Ringkasan
+              <textarea id="articleExcerpt" rows="2" maxlength="260" placeholder="Ceritakan secara singkat isi artikelmu..."></textarea>
+            </label>
+            <label class="field field-wide">Tag <span class="optional">(pisahkan dengan koma)</span>
+              <input id="articleTags" placeholder="teknologi, belajar, inspirasi">
+            </label>
+          </div>
+
+          <div class="field editor-field">
+            <span class="field-label">Isi artikel</span>
+            <div class="editor-toolbar" role="toolbar" aria-label="Format teks">
+              <button type="button" data-command="bold" title="Tebal"><b>B</b></button>
+              <button type="button" data-command="italic" title="Miring"><i>I</i></button>
+              <button type="button" data-command="underline" title="Garis bawah"><u>U</u></button>
+              <span class="toolbar-divider"></span>
+              <button type="button" data-command="formatBlock" data-value="h2" title="Judul bagian">H2</button>
+              <button type="button" data-command="formatBlock" data-value="h3" title="Subjudul">H3</button>
+              <button type="button" data-command="formatBlock" data-value="blockquote" title="Kutipan">❝</button>
+              <button type="button" data-command="insertUnorderedList" title="Daftar bullet">☷</button>
+              <button type="button" data-command="insertOrderedList" title="Daftar bernomor">1.</button>
+              <button type="button" data-command="justifyCenter" title="Rata tengah">≡</button>
+              <button type="button" id="insertImageBtn" title="Sisipkan gambar dari perangkat">▧</button>
+              <button type="button" id="insertLinkBtn" title="Tambah tautan">↗</button>
+            </div>
+            <input id="inlineImageUpload" type="file" accept="image/*" class="hidden" aria-label="Pilih gambar untuk isi artikel">
+            <div id="articleContent" class="content-editor" contenteditable="true" data-placeholder="Mulai tulis ceritamu di sini..."></div>
+            <div class="editor-foot"><span>Gunakan toolbar untuk memformat tulisan.</span><span id="wordCount">0 kata</span></div>
+          </div>
+
+          <div class="form-footer">
+            <span class="save-hint" id="saveHint">Perubahan disimpan saat kamu menekan tombol simpan.</span>
+            <div class="form-actions">
+              <button class="secondary-btn" type="button" id="saveDraftBtn">Simpan Draf</button>
+              <button class="primary-btn" type="button" id="publishBtn">Terbitkan Artikel ↗</button>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <section class="manage-panel">
+        <div class="manage-heading"><div><span class="panel-kicker">PERPUSTAKAANMU</span><h2>Daftar artikel</h2></div><span class="small-count" id="manageCount">0 artikel</span></div>
+        <div class="manage-list" id="manageList"></div>
+        <section class="moderation-panel" id="moderationPanel"><h3>Moderasi komentar</h3><div id="moderationList"></div></section>
+      </section>
+    </section>
+
+    <section class="view hidden wrap reader-view" id="readerView">
+      <button class="back-link" id="backToHome" type="button">← Kembali ke beranda</button>
+      <article id="readerArticle" class="reader-article"></article>
+    </section>
+  </main>
+
+  
+  <section class="account-modal hidden" id="accountModal" aria-modal="true" role="dialog">
+    <div class="account-box">
+      <button class="icon-btn account-close" id="accountClose" type="button" aria-label="Tutup">✕</button>
+      <h2 id="accountHeading">Masuk ke Ruang Artikel</h2>
+      <p>Login untuk menulis artikel, menyimpan bookmark, dan mengelola tulisanmu.</p>
+      <form id="accountForm">
+        <label>Username<input id="accountUsername" autocomplete="username" minlength="3" maxlength="24" required></label>
+        <label>Password<input id="accountPassword" type="password" autocomplete="current-password" minlength="8" required></label>
+        <button class="primary-btn" id="accountSubmit" type="submit">Login</button>
+      </form>
+      <button class="secondary-btn" id="registerToggle" type="button">Belum punya akun? Daftar</button>
+      <button class="secondary-btn hidden" id="logoutBtn" type="button">Logout</button>
+    </div>
+  </section>
+\n  <footer class="site-footer wrap">
+    <a class="brand footer-brand" href="#beranda"><span class="brand-mark">R<span>.</span></span><span class="brand-name">ruang<span>artikel</span></span></a>
+    <span>Dibuat untuk ide yang layak dibagikan.</span>
+    <span class="footer-year">© <span id="yearNow"></span> Ruang Artikel</span>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

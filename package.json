@@ -1,0 +1,9 @@
+{
+  "name": "ruang-artikel",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Ruang Artikel multi-user CMS with owner-protected articles",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
